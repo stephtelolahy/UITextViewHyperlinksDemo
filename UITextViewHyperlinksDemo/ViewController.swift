@@ -9,44 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
+}
 
-    // MARK: IBOutlet
+extension ViewController: UITableViewDataSource {
     
-    @IBOutlet weak var textView: UITextView!
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
     
-    
-    // MARK: Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Set these properties in interface builder
-        assert(textView.isSelectable)
-        assert(textView.dataDetectorTypes == .link)
-        
-        let html = """
-            <html>
-            <body>
-            <h1>Hello, go to <a href="http://www.google.com">google</a> and search for it</h1>
-            </body>
-            </html>
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as! HeaderCell
+        let titleText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+        let contentHtml = """
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales risus nibh, eget rhoncus tellus congue ut. Suspendisse potenti. In ligula risus, elementum in consequat sit amet, vulputate eu nisi. Ut a felis molestie, bibendum velit sed, tristique magna. Phasellus sem ex, accumsan vel iaculis ut, viverra maximus sapien. Mauris non metus diam. Curabitur tellus eros, congue quis malesuada quis, porttitor a enim. Nullam ac nisl nisi. Ut aliquam, augue ut mattis condimentum, diam ligula fringilla lectus, id malesuada sapien tellus a libero, go to <a href="http://www.google.com">google</a> and search for it</p>
             """
-        let data = Data(html.utf8)
-        guard let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) else {
-            return
-        }
-        textView.attributedText = attributedString
-        textView.delegate = self
+        cell.update(title: titleText, contentHtml: contentHtml)
+        return cell
     }
 }
-
-extension ViewController: UITextViewDelegate {
-    
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        // check for the url string for performing your own custom actions here
-        print("Interact with  \(URL.absoluteString)")
-        // Return NO if you don't want iOS to open the link
-        return true
-    }
-}
-
