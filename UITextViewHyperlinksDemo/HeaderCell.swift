@@ -14,6 +14,8 @@ class HeaderCell: UITableViewCell {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var contentTextViewHeightConstraint: NSLayoutConstraint!
     
+    var actionTapped: ((HeaderCell) -> ())?
+    
     override func awakeFromNib() {
         // Set these properties in interface builder
         assert(contentTextView.isSelectable)
@@ -31,6 +33,11 @@ class HeaderCell: UITableViewCell {
         }
         contentTextView.attributedText = attributedString
         contentTextViewHeightConstraint.constant = contentTextView.heightThatFitsContent
+    }
+    
+    
+    @IBAction func actionButtonTouchUpInside(_ sender: Any) {
+        actionTapped?(self)
     }
 }
 

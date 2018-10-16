@@ -44,10 +44,13 @@
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                         </textView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwj-2B-Cnc">
-                                            <rect key="frame" x="305" y="199.5" width="54" height="34"/>
+                                            <rect key="frame" x="307" y="199.5" width="52" height="34"/>
                                             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" title="Action"/>
+                                            <connections>
+                                                <action selector="actionButtonTouchUpInside:" destination="BQi-j3-AqG" eventType="touchUpInside" id="ifT-1g-V96"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -63,7 +66,6 @@
                                         <constraint firstItem="dyn-O4-ZIY" firstAttribute="leading" secondItem="rdb-Mf-qmr" secondAttribute="leading" constant="16" id="zyn-Bv-RiX"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="contentTextView" destination="26v-yQ-6Ng" id="U4u-Vc-1Ih"/>
                                     <outlet property="contentTextViewHeightConstraint" destination="8i2-uK-qyp" id="ZbK-hx-Ta4"/>
